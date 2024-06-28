@@ -1,0 +1,14 @@
+# @see https://medium.com/@xiaolishen/develop-in-docker-a-node-backend-and-a-react-front-end-talking-to-each-other-5c522156f634
+version: "3.8"
+
+services:
+  web:
+    build: .
+    image: "pokermon-api:latest"
+    command: sh -c "uvicorn main:app --reload --proxy-headers --host 0.0.0.0 --port 8000"
+    ports:
+      - 8000:8000
+    restart: unless-stopped
+    volumes:
+      - .:/app
+      
